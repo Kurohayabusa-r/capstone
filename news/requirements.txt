@@ -1,0 +1,5 @@
+requests==2.25.1
+beautifulsoup4==4.9.3
+protobuf==3.17.0
+google-cloud-storage
+google-cloud-firestore
