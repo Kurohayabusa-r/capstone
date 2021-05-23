@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ENDF</string>
+    <string name="title_home">Home</string>
+    <string name="title_prediction">Prediction</string>
+    <string name="title_news">News</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="report_title">Report Title</string>
+    <string name="report_location">Report Location</string>
+    <string name="report_by">Report By</string>
+    <string name="report_description">Report Description</string>
+</resources>
