@@ -1,12 +1,13 @@
 import pandas as pd
 import numpy as np
-import random
-import matplotlib.pyplot as plt
-import os
-from matplotlib.pylab import rcParams
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Dropout
-import sklearn.preprocessing as skpre
+#import random
+#import matplotlib.pyplot as plt
+#import os
+#from matplotlib.pylab import rcParams
+#from tensorflow.keras.models import Sequential
+#from tensorflow.keras.layers import Dense, LSTM, Dropout
+#import sklearn.preprocessing as skpre
+from sklearn.linear_model import LinearRegression
 
 print("Hello")
 
@@ -32,4 +33,15 @@ datasetTotal = datasetTotal.append(dataset2015.sample(1000))
 datasetTotal = datasetTotal.append(dataset2016.sample(1000))
 datasetTotal = datasetTotal.append(dataset2017.sample(1000))
 datasetTotal = datasetTotal.append(dataset2018.sample(1000))
-print(datasetTotal)
+
+datasetTotal = datasetTotal.drop('KEDALAMAN', axis=1)
+datasetTotal = datasetTotal.sort_values(['YEAR', 'MONTH', 'DAY'])
+
+X = datasetTotal.filter(regex='^(?!Mag).*$').to_numpy()
+y = datasetTotal.filter(regex='Mag').to_numpy()
+
+reg = LinearRegression().fit(X, y)
+
+#arr = datasetTotal.to_numpy()
+
+print(reg.score(X, y))
