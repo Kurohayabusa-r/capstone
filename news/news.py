@@ -17,24 +17,29 @@ def read_news():
                 link = str(post.find('a')['href']).replace('..', 'https://www.bmkg.go.id', 1)
                 if link not in blacklist:
                     title = post.find('a').text
-                    published = post.find('li').text.strip()
+                    published = post.findAll('li')[0].text.strip()
+                    author = post.findAll('li')[1].text.strip()
                     find_image = post.find('img', class_='img-responsive')['data-original']
 
-                    print(title)
-                    print(link)
-                    print(published)
-                    print(find_image)
-                    print()
-
                     blacklist.append(link)
+                    
+                    db = firestore.Client()
+                    doc_ref = db.collection('posts').document()
+                    doc_ref.set({
+                        'title': title,
+                        'link': link,
+                        'published': published,
+                        'author': author,
+                        'image': find_image
+                    })
 
                     with open('seen_posts.txt', 'a') as f:
                         f.write(link + '\n')
                         f.close()
 
                     blob.upload_from_filename('seen_posts.txt')
-        
-        time.sleep(3)
+
+        time.sleep(43200)
         return
 
     except Exception as e:
