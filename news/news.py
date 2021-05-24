@@ -5,7 +5,6 @@ from google.cloud import firestore
 import os
 import time
 
-limit = 5
 
 def read_news():
     try:
@@ -30,14 +29,16 @@ def read_news():
                         'link': link,
                         'published': published,
                         'author': author,
-                        'image': find_image
+                        'image': find_image,
+                        'time': time.ctime(int(time.time()))
                     })
 
                     with open('seen_posts.txt', 'a') as f:
                         f.write(link + '\n')
                         f.close()
 
-                    blob.upload_from_filename('seen_posts.txt')
+                    upload_to_gcs('seen_posts.txt')
+                    time.sleep(10)
 
         time.sleep(43200)
         return
@@ -58,11 +59,22 @@ def blacklisted_posts():
     return blacklist
 
 
-client = storage.Client()
-bucket = client.get_bucket('b21cap0397')
-blob = bucket.blob('seen_posts.txt')
-blob.download_to_filename('seen_posts.txt')
+def upload_to_gcs(filename):
+    client = storage.Client()
+    bucket = client.get_bucket('b21cap0397')
+    blob = bucket.blob(filename)
+    blob.upload_from_filename(filename)
 
+
+def download_from_gcs(filename):
+    client = storage.Client()
+    bucket = client.get_bucket('b21cap0397')
+    blob = bucket.blob(filename)
+    blob.download_to_filename(filename)
+
+
+limit = 5
+download_from_gcs('seen_posts.txt')
 blacklist = blacklisted_posts()
 while True:
     read_news()
