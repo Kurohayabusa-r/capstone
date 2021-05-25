@@ -13,3 +13,5 @@ Android/**/captures
 Android/**/.externalNativeBuild
 Android/**/.cxx
 Android/**/local.properties
+API/**/venv
+
