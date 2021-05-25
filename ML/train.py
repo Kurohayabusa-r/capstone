@@ -53,12 +53,9 @@ X_test = sc.fit_transform(X_test)
 def model():
 	# create model
 	model = Sequential()
-	model.add(Dense(32, input_dim=5, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(128, input_dim=5, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(96, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(64, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(1, kernel_initializer='normal'))
 	# Compile model
 	model.compile(loss='mean_squared_error', optimizer='adam')
