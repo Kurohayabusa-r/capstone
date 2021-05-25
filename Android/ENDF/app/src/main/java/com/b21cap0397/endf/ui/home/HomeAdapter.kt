@@ -4,31 +4,32 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.b21cap0397.endf.R
-import com.b21cap0397.endf.data.entities.ReportEntity
-import com.b21cap0397.endf.databinding.BaseRvRowBinding
-import com.bumptech.glide.Glide
+import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
+import com.b21cap0397.endf.databinding.BaseGempaRowBinding
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
 
-    private val listReports = ArrayList<ReportEntity>()
+    private val listGempa = ArrayList<GempaLimaSrEntity>()
 
-    fun setReports(reports: List<ReportEntity>) {
-        this.listReports.clear()
-        this.listReports.addAll(reports)
+    fun setGempaData(gempaList: ArrayList<GempaLimaSrEntity>) {
+        this.listGempa.clear()
+        this.listGempa.addAll(gempaList)
+        notifyDataSetChanged()
     }
 
-    class ReportViewHolder(private val binding: BaseRvRowBinding) :
+    class ReportViewHolder(private val binding: BaseGempaRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(report: ReportEntity) {
+        fun bind(gempa: GempaLimaSrEntity) {
             with(binding) {
-                Glide.with(itemView.context)
-                    .load(R.drawable.ic_default_report)
-                    .into(binding.ivUserAvatar)
-
-                tvReportTitle.text = report.title
-                tvReportLocation.text = report.location
-                tvReportBy.text = report.user
-                tvReportDescription.text = report.description
+                tvGempaMagnitude.text = itemView.resources.getString(R.string.gempa_skala, gempa.magnitude)
+                tvGempaLokasi.text =
+                    itemView.resources.getString(R.string.gempa_wilayah, gempa.wilayah)
+                tvGempaTanggal.text =
+                    itemView.resources.getString(R.string.gempa_waktu, gempa.tanggal, gempa.jam)
+                tvGempaKedalaman.text =
+                    itemView.resources.getString(R.string.gempa_kedalaman, gempa.kedalaman)
+//                tvGempaPotensi.text =
+//                    itemView.resources.getString(R.string.gempa_potensi, gempa.potensi)
 
                 itemView.setOnClickListener { }
             }
@@ -36,17 +37,17 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReportViewHolder {
-        val baseRvRowBinding =
-            BaseRvRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ReportViewHolder(baseRvRowBinding)
+        val baseGempaRowBinding =
+            BaseGempaRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ReportViewHolder(baseGempaRowBinding)
     }
 
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
-        val report = listReports[position]
+        val report = listGempa[position]
         holder.bind(report)
     }
 
     override fun getItemCount(): Int {
-        return listReports.size
+        return listGempa.size
     }
 }

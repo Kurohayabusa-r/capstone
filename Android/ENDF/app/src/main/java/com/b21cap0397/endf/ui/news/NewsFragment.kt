@@ -4,28 +4,50 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.b21cap0397.endf.R
 
 class NewsFragment : Fragment() {
 
-    private lateinit var newsViewModel: NewsViewModel
+    private lateinit var rvNews: RecyclerView
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        newsViewModel =
-                ViewModelProvider(this).get(NewsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_news, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        newsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_news, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        showRecyclerView()
+
+        val newsViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[NewsViewModel::class.java]
+
+        newsViewModel.setNewsFromFirebase()
+        newsViewModel.getNewsData().observe(
+            viewLifecycleOwner, {
+                if (it != null) {
+                    newsAdapter.setNewsData(it)
+                }
+            }
+        )
+    }
+
+    private fun showRecyclerView() {
+        rvNews = view?.findViewById(R.id.rv_news)!!
+        rvNews.setHasFixedSize(true)
+        rvNews.layoutManager = LinearLayoutManager(context)
+        newsAdapter = NewsAdapter()
+        rvNews.adapter = newsAdapter
     }
 }

@@ -16,9 +16,4 @@
         android:icon="@drawable/ic_nav_news"
         android:title="@string/title_news" />
 
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_nav_profile"
-        android:title="@string/title_profile" />
-
 </menu>

@@ -2,7 +2,6 @@
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,67 +12,68 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rv_item_container"
+        android:id="@+id/rv_news_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_user_avatar"
+            android:id="@+id/iv_news_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginEnd="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_default_news"/>
 
         <TextView
-            android:id="@+id/tv_report_title"
+            android:id="@+id/tv_news_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/report_title"
+            android:text="@string/news_title"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
-            app:layout_constraintTop_toTopOf="@+id/iv_user_avatar" />
+            app:layout_constraintStart_toEndOf="@+id/iv_news_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_news_image" />
 
         <TextView
-            android:id="@+id/tv_report_description"
+            android:id="@+id/tv_news_author"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
-            android:text="@string/report_description"
+            android:text="@string/news_author"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_report_title" />
+            app:layout_constraintStart_toEndOf="@+id/iv_news_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_news_title" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_news_link"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:text="@string/news_link"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.086"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/iv_news_image"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_news_author" />-->
 
         <TextView
-            android:id="@+id/tv_report_location"
+            android:id="@+id/tv_news_published"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/report_location"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
-            app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_report_description" />
-
-        <TextView
-            android:id="@+id/tv_report_by"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/report_by"
+            android:text="@string/news_published"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_report_location" />
+            app:layout_constraintStart_toEndOf="@+id/iv_news_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_news_link" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
