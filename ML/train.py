@@ -26,24 +26,24 @@ dataset2017 = pd.read_csv('./csv/2017.csv')
 dataset2018 = pd.read_csv('./csv/2018.csv')
 
 datasetTotal = pd.DataFrame({})
-datasetTotal = datasetTotal.append(dataset2009.sample(1000))
-datasetTotal = datasetTotal.append(dataset2010.sample(1000))
-datasetTotal = datasetTotal.append(dataset2011.sample(1000))
-datasetTotal = datasetTotal.append(dataset2012.sample(1000))
-datasetTotal = datasetTotal.append(dataset2013.sample(1000))
-datasetTotal = datasetTotal.append(dataset2014.sample(1000))
-datasetTotal = datasetTotal.append(dataset2015.sample(1000))
-datasetTotal = datasetTotal.append(dataset2016.sample(1000))
-datasetTotal = datasetTotal.append(dataset2017.sample(1000))
-datasetTotal = datasetTotal.append(dataset2018.sample(1000))
+datasetTotal = datasetTotal.append(dataset2009.sample(2500))
+datasetTotal = datasetTotal.append(dataset2010.sample(2500))
+datasetTotal = datasetTotal.append(dataset2011.sample(2500))
+datasetTotal = datasetTotal.append(dataset2012.sample(2500))
+datasetTotal = datasetTotal.append(dataset2013.sample(2500))
+datasetTotal = datasetTotal.append(dataset2014.sample(2500))
+datasetTotal = datasetTotal.append(dataset2015.sample(2500))
+datasetTotal = datasetTotal.append(dataset2016.sample(2500))
+datasetTotal = datasetTotal.append(dataset2017.sample(2500))
+datasetTotal = datasetTotal.append(dataset2018.sample(2500))
 
 datasetTotal = datasetTotal.drop('KEDALAMAN', axis=1)
-datasetTotal = datasetTotal.sort_values(['YEAR', 'MONTH', 'DAY'])
+#datasetTotal = datasetTotal.sort_values(['YEAR', 'MONTH', 'DAY'])
 
 X = datasetTotal.filter(regex='^(?!Mag).*$').to_numpy()
 y = datasetTotal.filter(regex='Mag').to_numpy()
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.01, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.0025, random_state=0)
 
 #reg = LinearRegression().fit(X, y)
 sc = StandardScaler()
@@ -54,6 +54,9 @@ def model():
 	# create model
 	model = Sequential()
 	model.add(Dense(32, input_dim=5, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(1, kernel_initializer='normal'))
@@ -75,7 +78,7 @@ def model():
 # print("Baseline: %.2f (%.2f) MSE" % (results.mean(), results.std()))
 
 model_real = model()
-model_real.fit(X_train, y_train, batch_size=10, epochs=150)
+model_real.fit(X_train, y_train, batch_size=10, epochs=300)
 
 y_pred = model_real.predict(X_test)
 
