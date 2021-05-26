@@ -46,12 +46,10 @@ class EqDetailFragment : BottomSheetDialogFragment(), OnMapReadyCallback {
             googleMap.addMarker(
                 MarkerOptions()
                     .position(coordinate)
-                    .title("Marker in Sydney")
+                    .title(eq.wilayah)
             )
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 6.0f))
 
-            val tvEqLocation: TextView? = view?.findViewById(R.id.tv_eq_location)
-            tvEqLocation?.text = eq.wilayah
         }
     }
 }
