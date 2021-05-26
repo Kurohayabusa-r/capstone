@@ -1,7 +1,9 @@
 package com.b21cap0397.endf.ui.home
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.b21cap0397.endf.R
 import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
@@ -28,10 +30,15 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
                     itemView.resources.getString(R.string.gempa_waktu, gempa.tanggal, gempa.jam)
                 tvGempaKedalaman.text =
                     itemView.resources.getString(R.string.gempa_kedalaman, gempa.kedalaman)
-//                tvGempaPotensi.text =
-//                    itemView.resources.getString(R.string.gempa_potensi, gempa.potensi)
 
-                itemView.setOnClickListener { }
+                itemView.setOnClickListener {
+                    val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
+                    val eqFragment = EqDetailFragment()
+                    val bundle = Bundle()
+                    bundle.putParcelable(EqDetailFragment.EXTRA_EQ, gempa)
+                    eqFragment.arguments = bundle
+                    eqFragment.show(fragmentManager, "EQ_DETAIL")
+                }
             }
         }
     }

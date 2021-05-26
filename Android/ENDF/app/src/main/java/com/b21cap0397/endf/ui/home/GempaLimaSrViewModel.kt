@@ -71,8 +71,8 @@ class GempaLimaSrViewModel : ViewModel() {
 
                     val gempaLimaSr = GempaLimaSrEntity()
                     gempaLimaSr.tanggal = document.data["occurence_time"].toString()
-                    gempaLimaSr.koordinat =
-                        "${document.data["latitude"].toString()},${document.data["longitude"]}"
+                    gempaLimaSr.latitude = document.data["latitude"].toString()
+                    gempaLimaSr.logitude = document.data["longitude"].toString()
                     gempaLimaSr.magnitude = document.data["magnitude"].toString()
                     gempaLimaSr.kedalaman = document.data["depth"].toString()
                     gempaLimaSr.wilayah = document.data["region"].toString()
