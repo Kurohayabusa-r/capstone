@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
+import math
 #import random
 import matplotlib.pyplot as plt
 #import os
 #from matplotlib.pylab import rcParams
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.wrappers.scikit_learn import KerasRegressor
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.models import model_from_json
+from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import cross_val_score, KFold, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, RobustScaler, MinMaxScaler
@@ -52,12 +54,12 @@ X_test = sc.fit_transform(X_test)
 
 def model():
 	model = Sequential()
-	model.add(Dense(96, input_dim=5, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(96, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(64, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(64, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(32, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(512, input_dim=5, kernel_initializer='normal', activation='relu'))
+	model.add(Dropout(0.2))
+	model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+	model.add(Dropout(0.2))
+	model.add(Dense(128, kernel_initializer='normal', activation='relu'))
+	model.add(Dropout(0.2))
 	model.add(Dense(1, kernel_initializer='normal'))
 	model.compile(loss='mean_squared_error', optimizer='adam')
 	return model
@@ -65,9 +67,17 @@ def model():
 print(X_train)
 
 model_real = model()
-model_real.fit(X_train, y_train, batch_size=10, epochs=200)
+model_real.fit(X_train, y_train, batch_size=10, epochs=50)
 
 y_pred = model_real.predict(X_test)
+
+model_json = model_real.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model_real.save_weights("model.h5")
+print("Saved model to disk")
+ 
 
 plt.plot(y_test, color = 'red', label = 'Real data')
 plt.plot(y_pred, color = 'blue', label = 'Predicted data')
