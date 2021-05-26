@@ -14,4 +14,6 @@ Android/**/.externalNativeBuild
 Android/**/.cxx
 Android/**/local.properties
 API/**/venv
+API/**/__pycache__
+API/**/.idea
 

@@ -1,7 +1,10 @@
 package com.b21cap0397.endf.ui.news
 
+import android.R
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.b21cap0397.endf.data.entities.NewsEntity
 import com.b21cap0397.endf.databinding.BaseNewsRowBinding
@@ -29,7 +32,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 tvNewsAuthor.text = news.author
                 tvNewsPublished.text = news.published
 
-                itemView.setOnClickListener { }
+                itemView.setOnClickListener {
+                    val intent = Intent(it.context, WebViewActivity::class.java)
+                    intent.putExtra(WebViewActivity.URL, news.link)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }
