@@ -24,12 +24,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
         fun bind(gempa: GempaLimaSrEntity) {
             with(binding) {
                 tvGempaMagnitude.text = itemView.resources.getString(R.string.gempa_skala, gempa.magnitude)
-                tvGempaLokasi.text =
-                    itemView.resources.getString(R.string.gempa_wilayah, gempa.wilayah)
+                tvGempaLokasi.text = gempa.wilayah
                 tvGempaTanggal.text =
                     itemView.resources.getString(R.string.gempa_waktu, gempa.tanggal, gempa.jam)
-                tvGempaKedalaman.text =
-                    itemView.resources.getString(R.string.gempa_kedalaman, gempa.kedalaman)
+                tvGempaKedalaman.text = gempa.kedalaman
 
                 itemView.setOnClickListener {
                     val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager

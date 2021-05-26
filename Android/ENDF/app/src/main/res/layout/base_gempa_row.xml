@@ -16,12 +16,13 @@
 
         <TextView
             android:id="@+id/tv_gempa_magnitude"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_marginEnd="100dp"
             android:gravity="center"
             android:text="@string/gempa_skala"
-            android:textSize="45sp"
+            android:textColor="@color/darker_gray"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,36 +32,44 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:drawablePadding="8dp"
             android:text="@string/gempa_wilayah"
-            android:textSize="14sp"
+            android:textColor="@color/darker_gray"
+            android:textSize="15sp"
+            app:drawableStartCompat="@drawable/ic_eq_location"
+            app:layout_constraintBottom_toTopOf="@+id/tv_gempa_kedalaman"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tv_gempa_magnitude"
             app:layout_constraintTop_toTopOf="@+id/tv_gempa_magnitude" />
-
-        <TextView
-            android:id="@+id/tv_gempa_tanggal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/gempa_waktu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_gempa_magnitude"
-            app:layout_constraintTop_toBottomOf="@+id/tv_gempa_lokasi" />
 
         <TextView
             android:id="@+id/tv_gempa_kedalaman"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="bottom"
             android:text="@string/gempa_kedalaman"
-            android:textSize="12sp"
+            android:textSize="13sp"
+            app:drawableStartCompat="@drawable/ic_eq_depth"
+            app:layout_constraintBottom_toTopOf="@+id/tv_gempa_tanggal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
             app:layout_constraintStart_toEndOf="@+id/tv_gempa_magnitude"
-            app:layout_constraintTop_toBottomOf="@+id/tv_gempa_tanggal" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_gempa_lokasi" />
+
+        <TextView
+            android:id="@+id/tv_gempa_tanggal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="8dp"
+            android:text="@string/gempa_waktu"
+            android:textSize="13sp"
+            app:drawableStartCompat="@drawable/ic_eq_time"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_gempa_magnitude"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_gempa_magnitude"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gempa_kedalaman" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

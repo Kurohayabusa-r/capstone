@@ -6,10 +6,10 @@
 
 
     <!--Gempa/Home-->
-    <string name="gempa_wilayah">Lokasi: %1$s</string>
-    <string name="gempa_kedalaman">Kedalaman: %1$s</string>
-    <string name="gempa_potensi">Potensi: %1$s</string>
-    <string name="gempa_waktu">Tanggal: %1$s %2$s</string>
+    <string name="gempa_wilayah">Lokasi</string>
+    <string name="gempa_kedalaman">Kedalaman</string>
+    <string name="gempa_potensi">Potensi</string>
+    <string name="gempa_waktu">%1$s %2$s</string>
     <string name="gempa_skala">%1$s</string>
 
     <!--News-->
