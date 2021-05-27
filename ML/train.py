@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 #from matplotlib.pylab import rcParams
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.models import model_from_json
+from tensorflow.keras.models import model_from_json, model_from_config, save_model
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import cross_val_score, KFold, train_test_split
 from sklearn.pipeline import Pipeline
@@ -71,12 +71,14 @@ model_real.fit(X_train, y_train, batch_size=10, epochs=50)
 
 y_pred = model_real.predict(X_test)
 
-model_json = model_real.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
-# serialize weights to HDF5
-model_real.save_weights("model.h5")
-print("Saved model to disk")
+# model_json = model_real.to_json()
+# with open("model.json", "w") as json_file:
+#     json_file.write(model_json)
+# # serialize weights to HDF5
+# model_real.save_weights("model.h5")
+# print("Saved model to disk")
+
+model_real.save('.', save_format="tf")
  
 
 plt.plot(y_test, color = 'red', label = 'Real data')
