@@ -1,11 +1,10 @@
 package com.b21cap0397.endf.ui.news
 
-import android.R
-import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.b21cap0397.endf.MainActivity
 import com.b21cap0397.endf.data.entities.NewsEntity
 import com.b21cap0397.endf.databinding.BaseNewsRowBinding
 import com.bumptech.glide.Glide
@@ -20,6 +19,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         notifyDataSetChanged()
     }
 
+
     class NewsViewHolder(private val binding: BaseNewsRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(news: NewsEntity) {
@@ -33,9 +33,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 tvNewsPublished.text = news.published
 
                 itemView.setOnClickListener {
-                    val intent = Intent(it.context, WebViewActivity::class.java)
-                    intent.putExtra(WebViewActivity.URL, news.link)
-                    itemView.context.startActivity(intent)
+                    val fragmentManager =
+                        (itemView.context as MainActivity).supportFragmentManager
+                    val wvFragment = WebViewFragment()
+                    val bundle = Bundle()
+                    bundle.putString(WebViewFragment.URL, news.link)
+                    wvFragment.arguments = bundle
+                    wvFragment.show(fragmentManager, WebViewFragment::class.java.simpleName)
                 }
             }
         }
