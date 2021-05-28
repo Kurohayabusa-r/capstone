@@ -39,50 +39,52 @@ datasetTotal = datasetTotal.append(dataset2017)
 datasetTotal = datasetTotal.append(dataset2018)
 
 datasetTotal = datasetTotal.drop('KEDALAMAN', axis=1)
-#datasetTotal = datasetTotal.sort_values(['YEAR', 'MONTH', 'DAY'])
 
 X = datasetTotal.filter(regex='^(?!Mag).*$').to_numpy()
-y = datasetTotal.filter(regex='Mag').to_numpy()
+#y = datasetTotal.filter(regex='Mag').to_numpy()
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.001, random_state=0)
-
-#reg = LinearRegression().fit(X, y)
-rc = RobustScaler()
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.001, random_state=0)
 sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.fit_transform(X_test)
+X = sc.fit(X)
+#X_test = sc.fit_transform(X_test)
 
-def model():
-	model = Sequential()
-	model.add(Dense(512, input_dim=5, kernel_initializer='normal', activation='relu'))
-	model.add(Dropout(0.2))
-	model.add(Dense(256, kernel_initializer='normal', activation='relu'))
-	model.add(Dropout(0.2))
-	model.add(Dense(128, kernel_initializer='normal', activation='relu'))
-	model.add(Dropout(0.2))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam')
-	return model
+print(sc.transform([[-123, 123, 1, 1, 2041]]))
 
-print(X_train)
+# test = sc.fit_transform(np.array([[-1, 123, 4, 5, 2019], [-1, 123, 4, 5, 2021]]))
 
-model_real = model()
-model_real.fit(X_train, y_train, batch_size=10, epochs=50)
 
-y_pred = model_real.predict(X_test)
+#print(test)
 
-# model_json = model_real.to_json()
-# with open("model.json", "w") as json_file:
-#     json_file.write(model_json)
-# # serialize weights to HDF5
-# model_real.save_weights("model.h5")
-# print("Saved model to disk")
+# def model():
+# 	model = Sequential()
+# 	model.add(Dense(512, input_dim=5, kernel_initializer='normal', activation='relu'))
+# 	model.add(Dropout(0.2))
+# 	model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+# 	model.add(Dropout(0.2))
+# 	model.add(Dense(128, kernel_initializer='normal', activation='relu'))
+# 	model.add(Dropout(0.2))
+# 	model.add(Dense(1, kernel_initializer='normal'))
+# 	model.compile(loss='mean_squared_error', optimizer='adam')
+# 	return model
 
-model_real.save('.', save_format="tf")
+
+# model_real = model()
+# model_real.fit(X_train, y_train, batch_size=10, epochs=50)
+
+# y_pred = model_real.predict(X_test)
+
+# # model_json = model_real.to_json()
+# # with open("model.json", "w") as json_file:
+# #     json_file.write(model_json)
+# # # serialize weights to HDF5
+# # model_real.save_weights("model.h5")
+# # print("Saved model to disk")
+
+# model_real.save('.', save_format="tf")
  
 
-plt.plot(y_test, color = 'red', label = 'Real data')
-plt.plot(y_pred, color = 'blue', label = 'Predicted data')
-plt.title('Prediction')
-plt.legend()
-plt.show()
+# plt.plot(y_test, color = 'red', label = 'Real data')
+# plt.plot(y_pred, color = 'blue', label = 'Predicted data')
+# plt.title('Prediction')
+# plt.legend()
+# plt.show()
