@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.b21cap0397.endf.R
 
-class HomeFragment : Fragment() {
+class EartquakeFragment : Fragment() {
 
     private lateinit var rvHome: RecyclerView
-    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var earthquakeAdapter: EarthquakeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,14 +31,14 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        )[GempaLimaSrViewModel::class.java]
+        )[EarthquakeFiveViewModel::class.java]
 
-//        homeViewModel.setGempaLimaSrDataFromApi()
+//        homeViewModel.setMagnitudePrediction()
         homeViewModel.setGempaLimaSrDataFromFirebase()
         homeViewModel.getGempaLimaSrData().observe(
             viewLifecycleOwner, {
                 if (it != null) {
-                    homeAdapter.setGempaData(it)
+                    earthquakeAdapter.setGempaData(it)
                 }
             }
         )
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         rvHome = view?.findViewById(R.id.rv_home)!!
         rvHome.setHasFixedSize(true)
         rvHome.layoutManager = LinearLayoutManager(context)
-        homeAdapter = HomeAdapter()
-        rvHome.adapter = homeAdapter
+        earthquakeAdapter = EarthquakeAdapter()
+        rvHome.adapter = earthquakeAdapter
     }
 }

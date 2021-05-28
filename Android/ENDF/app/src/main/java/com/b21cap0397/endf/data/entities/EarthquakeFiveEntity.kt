@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-data class GempaLimaSrEntity(
+data class EarthquakeFiveEntity(
     var id: String = "",
     var tanggal: String = "",
     var jam: String = "",

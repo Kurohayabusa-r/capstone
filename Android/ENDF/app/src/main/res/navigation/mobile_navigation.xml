@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.b21cap0397.endf.ui.earthquake.HomeFragment"
+        android:name="com.b21cap0397.endf.ui.earthquake.EartquakeFragment"
         android:label="@string/title_earthquake"
         tools:layout="@layout/fragment_eartquake" />
 

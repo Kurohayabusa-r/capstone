@@ -69,4 +69,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date_result" />
 
+    <TextView
+        android:id="@+id/tv_prediction_magnitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/prediction_magnitude"
+        style="@style/Theme.ENDF.PredictionKeys"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_result_value" />
+
+    <TextView
+        android:id="@+id/tv_prediction_magnitude_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/prediction_magnitude_value"
+        style="@style/Theme.ENDF.PredictionValues"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prediction_magnitude" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

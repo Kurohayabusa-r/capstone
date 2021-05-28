@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.b21cap0397.endf.R
-import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
+import com.b21cap0397.endf.data.entities.EarthquakeFiveEntity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class EqDetailFragment : BottomSheetDialogFragment(), OnMapReadyCallback {
+class EarthquakeDetailFragment : BottomSheetDialogFragment(), OnMapReadyCallback {
 
     companion object {
         const val EXTRA_EQ = "extra_eq"
@@ -39,7 +39,7 @@ class EqDetailFragment : BottomSheetDialogFragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         val bundle = arguments
         if (bundle != null) {
-            val eq: GempaLimaSrEntity? = bundle.getParcelable(EXTRA_EQ)
+            val eq: EarthquakeFiveEntity? = bundle.getParcelable(EXTRA_EQ)
             val coordinate = LatLng(eq?.latitude!!.toDouble(), eq.logitude.toDouble())
             googleMap.addMarker(
                 MarkerOptions()

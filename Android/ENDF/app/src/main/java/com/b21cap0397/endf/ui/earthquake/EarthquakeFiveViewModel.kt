@@ -4,16 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
+import com.b21cap0397.endf.data.entities.EarthquakeFiveEntity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class GempaLimaSrViewModel : ViewModel() {
+class EarthquakeFiveViewModel : ViewModel() {
 
-    private val gempaList = MutableLiveData<ArrayList<GempaLimaSrEntity>>()
+    private val gempaList = MutableLiveData<ArrayList<EarthquakeFiveEntity>>()
 
-//    fun setGempaLimaSrDataFromApi() {
-//        val gempaObjects = ArrayList<GempaLimaSrEntity>()
+//    fun setMagnitudePrediction() {
+//        val gempaObjects = ArrayList<EarthquakeFiveEntity>()
 //
 //        val url = "http://52.221.244.247:8000/api/bmkg/gempa/limasr"
 //
@@ -28,7 +28,7 @@ class GempaLimaSrViewModel : ViewModel() {
 //                val jsonArray = JSONArray(jsonString)
 //                for (i in 0 until jsonArray.length()) {
 //                    val jsonObject = jsonArray.getJSONObject(i)
-//                    val gempaLimaSr = GempaLimaSrEntity()
+//                    val gempaLimaSr = EarthquakeFiveEntity()
 //
 //                    gempaLimaSr.id = jsonObject.getString("id")
 //                    gempaLimaSr.tanggal = jsonObject.getString("tanggal")
@@ -57,7 +57,7 @@ class GempaLimaSrViewModel : ViewModel() {
 //    }
 
     fun setGempaLimaSrDataFromFirebase() {
-        val gempaObjects = ArrayList<GempaLimaSrEntity>()
+        val gempaObjects = ArrayList<EarthquakeFiveEntity>()
         val db = Firebase.firestore
         db.collection("earthquakes")
             .get()
@@ -65,7 +65,7 @@ class GempaLimaSrViewModel : ViewModel() {
                 for (document in result) {
                     Log.d("FB OK", "${document.id} => ${document.data}")
 
-                    val gempaLimaSr = GempaLimaSrEntity()
+                    val gempaLimaSr = EarthquakeFiveEntity()
                     gempaLimaSr.tanggal = document.data["occurence_time"].toString()
                     gempaLimaSr.latitude = document.data["latitude"].toString()
                     gempaLimaSr.logitude = document.data["longitude"].toString()
@@ -84,6 +84,6 @@ class GempaLimaSrViewModel : ViewModel() {
     }
 
 
-    fun getGempaLimaSrData(): LiveData<ArrayList<GempaLimaSrEntity>> = gempaList
+    fun getGempaLimaSrData(): LiveData<ArrayList<EarthquakeFiveEntity>> = gempaList
 
 }

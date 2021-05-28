@@ -109,6 +109,7 @@ class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDra
         geocode = "${position.latitude},${position.longitude}"
         val tvGeocodeValue: TextView? = view?.findViewById(R.id.tv_geocode_value)
         tvGeocodeValue?.text = geocode
+        println("[+] Title: ${p0.title}")
     }
 
 

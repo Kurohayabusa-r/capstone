@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.b21cap0397.endf.R
-import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
+import com.b21cap0397.endf.data.entities.EarthquakeFiveEntity
 import com.b21cap0397.endf.databinding.BaseGempaRowBinding
 
-class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
+class EarthquakeAdapter : RecyclerView.Adapter<EarthquakeAdapter.ReportViewHolder>() {
 
-    private val listGempa = ArrayList<GempaLimaSrEntity>()
+    private val listGempa = ArrayList<EarthquakeFiveEntity>()
 
-    fun setGempaData(gempaList: ArrayList<GempaLimaSrEntity>) {
+    fun setGempaData(gempaList: ArrayList<EarthquakeFiveEntity>) {
         this.listGempa.clear()
         this.listGempa.addAll(gempaList)
         notifyDataSetChanged()
@@ -21,7 +21,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
 
     class ReportViewHolder(private val binding: BaseGempaRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(gempa: GempaLimaSrEntity) {
+        fun bind(gempa: EarthquakeFiveEntity) {
             with(binding) {
                 tvGempaMagnitude.text = itemView.resources.getString(R.string.gempa_skala, gempa.magnitude)
                 tvGempaLokasi.text = gempa.wilayah
@@ -31,9 +31,9 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ReportViewHolder>() {
 
                 itemView.setOnClickListener {
                     val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
-                    val eqFragment = EqDetailFragment()
+                    val eqFragment = EarthquakeDetailFragment()
                     val bundle = Bundle()
-                    bundle.putParcelable(EqDetailFragment.EXTRA_EQ, gempa)
+                    bundle.putParcelable(EarthquakeDetailFragment.EXTRA_EQ, gempa)
                     eqFragment.arguments = bundle
                     eqFragment.show(fragmentManager, "EQ_DETAIL")
                 }
