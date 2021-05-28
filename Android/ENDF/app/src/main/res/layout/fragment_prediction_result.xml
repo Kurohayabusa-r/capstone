@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.prediction.PredictionResultFragment">
+
+
+    <TextView
+        android:id="@+id/tv_prediction_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prediction_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/primaryColor"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_geocode_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/geocode"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Theme.ENDF.PredictionKeys"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_prediction_result" />
+
+    <TextView
+        android:id="@+id/tv_geocode_result_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/Theme.ENDF.PredictionValues"
+        android:text="@string/geocode_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_geocode_result" />
+
+    <TextView
+        android:id="@+id/tv_date_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/date"
+        style="@style/Theme.ENDF.PredictionKeys"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_geocode_result_value" />
+
+    <TextView
+        android:id="@+id/tv_date_result_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/date_value"
+        style="@style/Theme.ENDF.PredictionValues"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
