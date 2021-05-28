@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.b21cap0397.endf.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.b21cap0397.endf.ui.earthquake.HomeFragment"
+        android:label="@string/title_earthquake"
+        tools:layout="@layout/fragment_eartquake" />
 
     <fragment
         android:id="@+id/nav_prediction"

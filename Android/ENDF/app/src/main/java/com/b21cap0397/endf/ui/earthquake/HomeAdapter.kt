@@ -1,4 +1,4 @@
-package com.b21cap0397.endf.ui.home
+package com.b21cap0397.endf.ui.earthquake
 
 import android.os.Bundle
 import android.view.LayoutInflater

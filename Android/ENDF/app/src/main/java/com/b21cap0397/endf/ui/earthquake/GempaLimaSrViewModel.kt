@@ -1,4 +1,4 @@
-package com.b21cap0397.endf.ui.home
+package com.b21cap0397.endf.ui.earthquake
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,10 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpResponseHandler
-import cz.msebera.android.httpclient.Header
-import org.json.JSONArray
 
 class GempaLimaSrViewModel : ViewModel() {
 

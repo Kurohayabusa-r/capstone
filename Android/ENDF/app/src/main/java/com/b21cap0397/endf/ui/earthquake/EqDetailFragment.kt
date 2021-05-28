@@ -1,10 +1,9 @@
-package com.b21cap0397.endf.ui.home
+package com.b21cap0397.endf.ui.earthquake
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.b21cap0397.endf.R
 import com.b21cap0397.endf.data.entities.GempaLimaSrEntity
 import com.google.android.gms.maps.CameraUpdateFactory
