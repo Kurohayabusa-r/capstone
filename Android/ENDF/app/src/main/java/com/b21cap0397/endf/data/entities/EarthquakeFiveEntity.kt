@@ -10,7 +10,7 @@ data class EarthquakeFiveEntity(
     var tanggal: String = "",
     var jam: String = "",
     var latitude: String = "",
-    var logitude: String = "",
+    var longitude: String = "",
     var magnitude: String = "",
     var kedalaman: String = "",
     var wilayah: String = ""

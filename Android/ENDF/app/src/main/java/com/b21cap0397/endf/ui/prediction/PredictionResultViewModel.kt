@@ -10,19 +10,27 @@ import cz.msebera.android.httpclient.entity.StringEntity
 import org.json.JSONArray
 import org.json.JSONObject
 
-class PredictionViewModel : ViewModel() {
+
+class PredictionResultViewModel : ViewModel() {
 
     private val _magnitudePrediction = MutableLiveData<String>()
 
-    fun setMagnitudePrediction(data: List<Number>) {
+    fun setPredictionResult(data: List<Number>) {
 
         val url = "http://35.226.247.153/predict"
+
         val jsonParams = JSONObject()
         jsonParams.put("instances", JSONArray(data))
+
         val params = StringEntity(jsonParams.toString())
         params.setContentType("application/json")
+
         val client = AsyncHttpClient()
-        client.setTimeout(10000)
+        client.setMaxRetriesAndTimeout(200, 10)
+        client.connectTimeout = 2000
+        client.responseTimeout = 5000
+
+        client.setURLEncodingEnabled(true)
         client.post(null, url, params, "application/json", object : AsyncHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
@@ -32,7 +40,7 @@ class PredictionViewModel : ViewModel() {
                 val jsonString = String(responseBody)
                 val jsonObject = JSONObject(jsonString)
                 val result = jsonObject.getJSONArray("predictions").getJSONArray(0)[0]
-                _magnitudePrediction.value = result.toString()
+                _magnitudePrediction.value = String.format("%.2f", result.toString().toDouble())
             }
 
             override fun onFailure(

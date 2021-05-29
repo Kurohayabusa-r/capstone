@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.b21cap0397.endf.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,8 +30,7 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
         val viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        )[PredictionViewModel::class.java]
-
+        )[PredictionResultViewModel::class.java]
 
         val tvDateResultValue: TextView = view.findViewById(R.id.tv_date_result_value)
         val tvGeocodeResultValue: TextView = view.findViewById(R.id.tv_geocode_result_value)
@@ -53,12 +51,12 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
                     fullDateSplitted[0]
                 )
 
-            viewModel.setMagnitudePrediction(params)
+            viewModel.setPredictionResult(params)
             tvDateResultValue.text = fullDate
             tvGeocodeResultValue.text = geoCode
         }
 
-        viewModel.magnitudePrediction.observe(viewLifecycleOwner, Observer {
+        viewModel.magnitudePrediction.observe(viewLifecycleOwner, {
             tvMagnitudeResultValue.text = it
         })
     }

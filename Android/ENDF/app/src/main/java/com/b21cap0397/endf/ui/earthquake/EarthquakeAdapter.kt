@@ -25,9 +25,10 @@ class EarthquakeAdapter : RecyclerView.Adapter<EarthquakeAdapter.ReportViewHolde
             with(binding) {
                 tvGempaMagnitude.text = itemView.resources.getString(R.string.gempa_skala, gempa.magnitude)
                 tvGempaLokasi.text = gempa.wilayah
+                tvGempaKedalaman.text = gempa.kedalaman
                 tvGempaTanggal.text =
                     itemView.resources.getString(R.string.gempa_waktu, gempa.tanggal, gempa.jam)
-                tvGempaKedalaman.text = gempa.kedalaman
+
 
                 itemView.setOnClickListener {
                     val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager

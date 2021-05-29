@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ENDF</string>
+    <string name="app_name">Epicentre</string>
     <string name="title_earthquake">Earthquake</string>
     <string name="title_prediction">Prediction</string>
     <string name="title_news">News</string>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,9 +34,9 @@ class EartquakeFragment : Fragment() {
             ViewModelProvider.NewInstanceFactory()
         )[EarthquakeFiveViewModel::class.java]
 
-//        homeViewModel.setMagnitudePrediction()
-        homeViewModel.setGempaLimaSrDataFromFirebase()
-        homeViewModel.getGempaLimaSrData().observe(
+        homeViewModel.setEarthquakeListLoopJ()
+//        homeViewModel.setEarthquakeListFirebase()
+        homeViewModel.getEarthquakeList().observe(
             viewLifecycleOwner, {
                 if (it != null) {
                     earthquakeAdapter.setGempaData(it)
@@ -51,4 +52,5 @@ class EartquakeFragment : Fragment() {
         earthquakeAdapter = EarthquakeAdapter()
         rvHome.adapter = earthquakeAdapter
     }
+
 }

@@ -3,6 +3,7 @@ package com.b21cap0397.endf.ui.prediction
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,11 +63,13 @@ class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDra
         val btnPredict: Button = view.findViewById(R.id.bt_predict)
         btnPredict.setOnClickListener {
             if (geocode == null || date == null) {
-                Toast.makeText(
+                val toast = Toast.makeText(
                     view.context,
                     "Geocode or date must NOT be empty!",
                     Toast.LENGTH_SHORT
-                ).show()
+                )
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
             } else {
                 val predictionResultFragment = PredictionResultFragment()
                 val bundle = Bundle()
@@ -99,17 +102,22 @@ class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDra
 
     override fun onMarkerDrag(p0: Marker) {
         val position = p0.position
-        geocode = "${position.latitude},${position.longitude}"
+        geocode = formatGeocode(position.latitude, position.longitude)
         val tvGeocodeValue: TextView? = view?.findViewById(R.id.tv_geocode_value)
         tvGeocodeValue?.text = geocode
     }
 
     override fun onMarkerDragEnd(p0: Marker) {
         val position = p0.position
-        geocode = "${position.latitude},${position.longitude}"
+        geocode = formatGeocode(position.latitude, position.longitude)
         val tvGeocodeValue: TextView? = view?.findViewById(R.id.tv_geocode_value)
         tvGeocodeValue?.text = geocode
-        println("[+] Title: ${p0.title}")
+    }
+
+    private fun formatGeocode(lat: Double, long: Double): String {
+        val newLat = String.format("%.10f", lat)
+        val newLong = String.format("%.10f", long)
+        return "$newLat,$newLong"
     }
 
 

@@ -40,7 +40,7 @@ class EarthquakeDetailFragment : BottomSheetDialogFragment(), OnMapReadyCallback
         val bundle = arguments
         if (bundle != null) {
             val eq: EarthquakeFiveEntity? = bundle.getParcelable(EXTRA_EQ)
-            val coordinate = LatLng(eq?.latitude!!.toDouble(), eq.logitude.toDouble())
+            val coordinate = LatLng(eq?.latitude!!.toDouble(), eq.longitude.toDouble())
             googleMap.addMarker(
                 MarkerOptions()
                     .position(coordinate)

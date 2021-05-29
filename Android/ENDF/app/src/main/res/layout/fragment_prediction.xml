@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -30,65 +32,71 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp">
+            android:padding="15dp">
 
 
             <TextView
                 android:id="@+id/tv_geocode"
+                style="@style/Theme.ENDF.PredictionKeys"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:text="@string/geocode"
-                style="@style/Theme.ENDF.PredictionKeys"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_geocode_value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/geocode_value"
                 style="@style/Theme.ENDF.PredictionValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_prediction_values"
+                android:drawablePadding="40dp"
+                android:text="@string/geocode_value"
+                app:drawableEndCompat="@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_geocode" />
 
             <TextView
                 android:id="@+id/tv_date"
+                style="@style/Theme.ENDF.PredictionKeys"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/date"
-                style="@style/Theme.ENDF.PredictionKeys"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_geocode_value" />
 
             <TextView
                 android:id="@+id/tv_date_value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/date_value"
                 style="@style/Theme.ENDF.PredictionValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_prediction_values"
+                android:drawablePadding="40dp"
+                android:text="@string/date_value"
+                app:drawableEndCompat="@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
             <Button
                 android:id="@+id/bt_predict"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:background="@drawable/bg_magnitude"
-                android:text="@string/predict"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_button_predict"
                 android:padding="0dp"
-                android:textColor="@color/primaryColor"
+                android:text="@string/predict"
+                android:textColor="@drawable/text_button_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_date_value" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_date_value"
+                app:layout_constraintVertical_bias="0.70" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
