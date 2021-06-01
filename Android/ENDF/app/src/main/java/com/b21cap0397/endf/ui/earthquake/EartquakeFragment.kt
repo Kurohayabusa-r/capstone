@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,15 +26,16 @@ class EartquakeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showRecyclerView()
-
         val homeViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         )[EarthquakeFiveViewModel::class.java]
 
-        homeViewModel.setEarthquakeListLoopJ()
-//        homeViewModel.setEarthquakeListFirebase()
+        showRecyclerView()
+
+//        homeViewModel.setEarthquakeListLoopJ()
+        homeViewModel.setEarthquakeListFirebase()
+
         homeViewModel.getEarthquakeList().observe(
             viewLifecycleOwner, {
                 if (it != null) {

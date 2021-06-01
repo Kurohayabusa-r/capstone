@@ -22,6 +22,7 @@ class EarthquakeFiveViewModel : ViewModel() {
         val url = "http://52.221.244.247:8000/api/bmkg/gempa/limasr"
 
         val client = AsyncHttpClient()
+        println("[+]========================SET AGAIN===========================")
         client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
@@ -48,6 +49,7 @@ class EarthquakeFiveViewModel : ViewModel() {
                     gempaObjects.add(gempaLimaSr)
                 }
                 gempaList.postValue(gempaObjects)
+//                gempaList.value = gempaObjects
             }
 
             override fun onFailure(
