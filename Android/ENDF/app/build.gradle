@@ -7,8 +7,10 @@ plugins {
 }
 
 apply plugin: 'com.android.application'
-// Add this line
 apply plugin: 'com.google.gms.google-services'
+
+def STRING = 'String'
+def MAPS_API_KEY = '"' + MAPS_API_KEY + '"' ?: '"Define your MAP API Key!"'
 
 android {
     compileSdkVersion 30
@@ -22,6 +24,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        each { type ->
+            type.buildConfigField STRING, 'MAPS_API_KEY', MAPS_API_KEY
+        }
     }
 
     buildFeatures {

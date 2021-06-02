@@ -12,8 +12,6 @@ Android/**/build
 Android/**/captures
 Android/**/.externalNativeBuild
 Android/**/.cxx
-Android/**/local.properties
 Android/**/google-services.json
-API/**/venv
-API/**/__pycache__
-API/**/.idea
+Android/**/gradle.properties
+

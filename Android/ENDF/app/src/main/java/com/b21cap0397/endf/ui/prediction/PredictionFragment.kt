@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.b21cap0397.endf.BuildConfig
 import com.b21cap0397.endf.R
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -41,7 +42,7 @@ class PredictionFragment : Fragment() {
         tvLocationValue = view.findViewById(R.id.tv_location_value)
         tvDateValue = view.findViewById(R.id.tv_date_value)
 
-        val apiKey = getString(R.string.api_key)
+        val apiKey = BuildConfig.MAPS_API_KEY
         context?.let { Places.initialize(it, apiKey) }
 
         tvLocationValue.setOnClickListener {
