@@ -30,8 +30,8 @@ class NewsViewModel : ViewModel() {
 
                     newsObjects.add(news)
                 }
-
-                newsList.postValue(newsObjects)
+                val sortedList = newsObjects.sortedByDescending { it.published }
+                newsList.postValue(ArrayList(sortedList.toList()))
             }
             .addOnFailureListener { exception ->
                 Log.d("FB ERR", "Error getting documents: ", exception)

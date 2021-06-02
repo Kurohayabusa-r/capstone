@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Epicentre</string>
     <string name="title_earthquake">Earthquake</string>
+    <string name="title_earthquake_2">Earthquakes in Indonesia</string>
     <string name="title_prediction">Prediction</string>
     <string name="title_news">News</string>
+    <string name="title_news2">BMKG News</string>
 
-    <!--Gempa/Home-->
+    <!--Earthquakes-->
     <string name="gempa_wilayah">Lokasi</string>
     <string name="gempa_kedalaman">Kedalaman</string>
     <string name="gempa_potensi">Potensi</string>

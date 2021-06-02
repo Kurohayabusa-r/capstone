@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.b21cap0397.endf.ui.earthquake.EartquakeFragment"
-        android:label="@string/title_earthquake"
+        android:label="@string/title_earthquake_2"
         tools:layout="@layout/fragment_eartquake" />
 
     <fragment
@@ -20,6 +20,6 @@
     <fragment
         android:id="@+id/nav_news"
         android:name="com.b21cap0397.endf.ui.news.NewsFragment"
-        android:label="@string/title_news"
+        android:label="@string/title_news2"
         tools:layout="@layout/fragment_news" />
 </navigation>
