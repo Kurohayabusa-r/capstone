@@ -1,100 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
         tools:context=".ui.prediction.PredictionResultFragment">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/tv_prediction_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/prediction_result"
+                android:textColor="@color/primaryColor"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_prediction_result_magnitude"
+                style="@style/Theme.ENDF.PredictionKeys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/prediction_magnitude"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_prediction_result" />
+
+
+            <TextView
+                android:id="@+id/tv_prediction_result_value"
+                style="@style/Theme.ENDF.PredictionValues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_prediction_values"
+                android:gravity="center"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_prediction_result_magnitude" />
+
+
+            <TextView
+                android:id="@+id/tv_prediction_disclaimer"
+                style="@style/Theme.ENDF.PredictionDisclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/prediction_disclaimer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_prediction_result_value" />
+
+            <TextView
+                android:id="@+id/tv_disclaimer_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_disclaimer"
+                android:padding="10dp"
+                android:text="@string/prediction_disclaimer_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_prediction_disclaimer" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/tv_prediction_result"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_timeout_message"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/prediction_result"
-            android:textColor="@color/primaryColor"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/btn_try_again"
+            app:layout_constraintEnd_toEndOf="@+id/constraint_wrapper"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/constraint_wrapper" />
 
-
-        <TextView
-            android:id="@+id/tv_geocode_result"
-            style="@style/Theme.ENDF.PredictionKeys"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_try_again"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/geocode"
+            android:background="@drawable/bg_button_predict"
+            android:text="@string/try_again"
+            android:textColor="@drawable/text_button_color"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/constraint_wrapper"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_prediction_result" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_timeout_message" />
 
-        <TextView
-            android:id="@+id/tv_geocode_result_value"
-            style="@style/Theme.ENDF.PredictionValues"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_prediction_values"
-            android:text="@string/geocode_value"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_geocode_result" />
-
-        <TextView
-            android:id="@+id/tv_date_result"
-            style="@style/Theme.ENDF.PredictionKeys"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_geocode_result_value" />
-
-        <TextView
-            android:id="@+id/tv_date_result_value"
-            style="@style/Theme.ENDF.PredictionValues"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_prediction_values"
-            android:text="@string/date_value"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_result" />
-
-        <TextView
-            android:id="@+id/tv_prediction_magnitude"
-            style="@style/Theme.ENDF.PredictionKeys"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/prediction_magnitude"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_result_value" />
-
-        <TextView
-            android:id="@+id/tv_prediction_magnitude_value"
-            style="@style/Theme.ENDF.PredictionValues"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_prediction_values"
-            android:text="@string/prediction_magnitude_value"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_prediction_magnitude" />
+            app:layout_constraintTop_toTopOf="@+id/constraint_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>
 

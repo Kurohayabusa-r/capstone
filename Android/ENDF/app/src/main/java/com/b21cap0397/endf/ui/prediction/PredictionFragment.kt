@@ -1,31 +1,31 @@
 package com.b21cap0397.endf.ui.prediction
 
 import android.app.DatePickerDialog
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.b21cap0397.endf.R
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import java.util.*
 
-class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
+class PredictionFragment : Fragment() {
 
     var geocode: String? = null
     var date: String? = null
+
+    private lateinit var tvLocationValue: TextView
+    private lateinit var tvDateValue: TextView
+
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,16 +35,25 @@ class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDra
         return inflater.inflate(R.layout.fragment_prediction, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
 
-        val mapFragment =
-            childFragmentManager.findFragmentById(R.id.pred_map) as? SupportMapFragment
-        mapFragment?.getMapAsync(this)
+        tvLocationValue = view.findViewById(R.id.tv_location_value)
+        tvDateValue = view.findViewById(R.id.tv_date_value)
 
-        val tvDateValue: TextView = view.findViewById(R.id.tv_date_value)
+        val apiKey = getString(R.string.api_key)
+        context?.let { Places.initialize(it, apiKey) }
+
+        tvLocationValue.setOnClickListener {
+            val fields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
+            val intent = context?.let { appContext ->
+                Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                    .setCountry("ID")
+                    .build(appContext)
+            }
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+
         tvDateValue.setOnClickListener {
             val cal = Calendar.getInstance()
             val mYear = cal.get(Calendar.YEAR)
@@ -65,10 +74,9 @@ class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDra
             if (geocode == null || date == null) {
                 val toast = Toast.makeText(
                     view.context,
-                    "Geocode or date must NOT be empty!",
+                    getString(R.string.empty_predict_message),
                     Toast.LENGTH_SHORT
                 )
-                toast.setGravity(Gravity.CENTER, 0, 0)
                 toast.show()
             } else {
                 val predictionResultFragment = PredictionResultFragment()
@@ -80,45 +88,34 @@ class PredictionFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerDra
             }
         }
 
-
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        val coordinate = LatLng(-6.20906, 106.83539)
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(coordinate)
-                .title("Test")
-                .draggable(true)
-        )
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 6.0f))
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (data != null) {
+                try {
+                    val place = Autocomplete.getPlaceFromIntent(data)
+                    tvLocationValue.text = place.name.toString()
+                    geocode = formatGeocode(place.latLng.toString())
+                } catch (e: Exception) {
+                    tvLocationValue.text = getString(R.string.location_value)
+                    geocode = null
+                }
+            }
 
-        googleMap.setOnMarkerDragListener(this)
+
+        }
     }
 
-    override fun onMarkerDragStart(p0: Marker) {
-
+    private fun formatGeocode(latLong: String): String {
+        var result = ""
+        val pattern = Regex("""\(([^]]+)\)""")
+        val match = pattern.find(latLong)
+        if (match != null) {
+            result = match.groupValues[1]
+        }
+        return result
     }
-
-    override fun onMarkerDrag(p0: Marker) {
-        val position = p0.position
-        geocode = formatGeocode(position.latitude, position.longitude)
-        val tvGeocodeValue: TextView? = view?.findViewById(R.id.tv_geocode_value)
-        tvGeocodeValue?.text = geocode
-    }
-
-    override fun onMarkerDragEnd(p0: Marker) {
-        val position = p0.position
-        geocode = formatGeocode(position.latitude, position.longitude)
-        val tvGeocodeValue: TextView? = view?.findViewById(R.id.tv_geocode_value)
-        tvGeocodeValue?.text = geocode
-    }
-
-    private fun formatGeocode(lat: Double, long: Double): String {
-        val newLat = String.format("%.10f", lat)
-        val newLong = String.format("%.10f", long)
-        return "$newLat,$newLong"
-    }
-
-
 }
+

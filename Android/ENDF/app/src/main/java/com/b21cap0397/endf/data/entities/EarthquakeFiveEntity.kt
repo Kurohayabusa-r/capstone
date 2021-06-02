@@ -14,4 +14,4 @@ data class EarthquakeFiveEntity(
     var magnitude: String = "",
     var kedalaman: String = "",
     var wilayah: String = ""
-): Parcelable
+) : Parcelable

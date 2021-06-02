@@ -17,19 +17,25 @@
         <item name="android:layout_margin">3dp</item>
     </style>
 
-    <style name="Theme.ENDF.PredictionKeys" parent="Widget.AppCompat.TextView" >
+    <style name="Theme.ENDF.PredictionKeys" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Theme.ENDF.PredictionValues" parent="Widget.AppCompat.TextView" >
+    <style name="Theme.ENDF.PredictionValues" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryDarkColor</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginTop">2dp</item>
     </style>
 
+    <style name="Theme.ENDF.PredictionDisclaimer" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/orange_2</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
 </resources>

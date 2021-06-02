@@ -18,12 +18,20 @@
     <string name="news_published">News Published At</string>
 
     <!--Prediction-->
-    <string name="geocode">Geocode</string>
-    <string name="geocode_value">0000,0000</string>
+    <string name="location">Location</string>
+    <string name="location_value">Click to search</string>
     <string name="date">Date</string>
-    <string name="date_value">0000-00-00</string>
+    <string name="date_value">Click to set</string>
     <string name="predict">Predict</string>
     <string name="prediction_result">Prediction Result</string>
     <string name="prediction_magnitude">Magnitude</string>
     <string name="prediction_magnitude_value">0.0</string>
+
+    <string name="api_key">AIzaSyCL-ulwPoZtXkkTy2wUyalTHTjh8gmxMWE</string>
+
+    <string name="prediction_disclaimer">Disclaimer</string>
+    <string name="prediction_disclaimer_value">This result is merely a prediction, therefore it should not be taken as a guaranteed event.</string>
+    <string name="empty_predict_message">Location or date must NOT be empty!</string>
+    <string name="connection_error">Connection error!</string>
+    <string name="try_again">Try again</string>
 </resources>

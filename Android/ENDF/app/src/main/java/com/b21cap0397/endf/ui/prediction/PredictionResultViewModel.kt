@@ -14,6 +14,7 @@ import org.json.JSONObject
 class PredictionResultViewModel : ViewModel() {
 
     private val _magnitudePrediction = MutableLiveData<String>()
+    private val _isTimeout = MutableLiveData<Boolean>()
 
     fun setPredictionResult(data: List<Number>) {
 
@@ -41,6 +42,7 @@ class PredictionResultViewModel : ViewModel() {
                 val jsonObject = JSONObject(jsonString)
                 val result = jsonObject.getJSONArray("predictions").getJSONArray(0)[0]
                 _magnitudePrediction.value = String.format("%.2f", result.toString().toDouble())
+                _isTimeout.value = false
             }
 
             override fun onFailure(
@@ -51,10 +53,12 @@ class PredictionResultViewModel : ViewModel() {
             ) {
                 if (error != null) {
                     println("[+] Status code: $statusCode, \nerror: ${error.message}")
+                    _isTimeout.value = true
                 }
             }
         })
     }
 
     val magnitudePrediction: LiveData<String> = _magnitudePrediction
+    val isTimeout: LiveData<Boolean> = _isTimeout
 }

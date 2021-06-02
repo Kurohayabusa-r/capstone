@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import com.b21cap0397.endf.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -15,6 +18,9 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
         const val EXTRA_DATE = "extra_date"
         const val EXTRA_GEOCODE = "extra_geocode"
     }
+
+    private lateinit var params: List<Number>
+    private lateinit var timeoutMessage: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,17 +38,20 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
             ViewModelProvider.NewInstanceFactory()
         )[PredictionResultViewModel::class.java]
 
-        val tvDateResultValue: TextView = view.findViewById(R.id.tv_date_result_value)
-        val tvGeocodeResultValue: TextView = view.findViewById(R.id.tv_geocode_result_value)
-        val tvMagnitudeResultValue: TextView = view.findViewById(R.id.tv_prediction_magnitude_value)
+        val tvMagnitudeResultValue: TextView = view.findViewById(R.id.tv_prediction_result_value)
+        val progressBar: ProgressBar = view.findViewById(R.id.progressBar)
+        val contentWrapper: ConstraintLayout = view.findViewById(R.id.constraint_wrapper)
+        val btnTryAgain: Button = view.findViewById(R.id.btn_try_again)
 
         val bundle = arguments
         if (bundle != null) {
             val fullDate = bundle.getString(EXTRA_DATE)
             val fullDateSplitted = fullDate?.split("-")?.map { item -> item.toInt() }
+
             val geoCode = bundle.getString(EXTRA_GEOCODE)
             val geoCodeSplitted = geoCode?.split(",")?.map { item -> item.toDouble() }
-            val params: List<Number> =
+
+            params =
                 listOf(
                     geoCodeSplitted!![0],
                     geoCodeSplitted[1],
@@ -52,12 +61,31 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
                 )
 
             viewModel.setPredictionResult(params)
-            tvDateResultValue.text = fullDate
-            tvGeocodeResultValue.text = geoCode
         }
 
         viewModel.magnitudePrediction.observe(viewLifecycleOwner, {
+            progressBar.visibility = View.GONE
             tvMagnitudeResultValue.text = it
+            contentWrapper.visibility = View.VISIBLE
         })
+
+        viewModel.isTimeout.observe(viewLifecycleOwner, { connectionError ->
+            when (connectionError) {
+                true -> {
+                    timeoutMessage = view.findViewById(R.id.tv_timeout_message)
+                    timeoutMessage.text = getString(R.string.connection_error)
+                    progressBar.visibility = View.GONE
+                    timeoutMessage.visibility = View.VISIBLE
+                    btnTryAgain.visibility = View.VISIBLE
+                }
+            }
+        })
+
+        btnTryAgain.setOnClickListener {
+            viewModel.setPredictionResult(params)
+            progressBar.visibility = View.VISIBLE
+            timeoutMessage.visibility = View.INVISIBLE
+            btnTryAgain.visibility = View.INVISIBLE
+        }
     }
 }

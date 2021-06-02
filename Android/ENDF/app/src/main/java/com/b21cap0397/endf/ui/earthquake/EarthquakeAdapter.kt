@@ -23,7 +23,8 @@ class EarthquakeAdapter : RecyclerView.Adapter<EarthquakeAdapter.ReportViewHolde
         RecyclerView.ViewHolder(binding.root) {
         fun bind(gempa: EarthquakeFiveEntity) {
             with(binding) {
-                tvGempaMagnitude.text = itemView.resources.getString(R.string.gempa_skala, gempa.magnitude)
+                tvGempaMagnitude.text =
+                    itemView.resources.getString(R.string.gempa_skala, gempa.magnitude)
                 tvGempaLokasi.text = gempa.wilayah
                 tvGempaKedalaman.text = gempa.kedalaman
                 tvGempaTanggal.text =
@@ -31,7 +32,8 @@ class EarthquakeAdapter : RecyclerView.Adapter<EarthquakeAdapter.ReportViewHolde
 
 
                 itemView.setOnClickListener {
-                    val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
+                    val fragmentManager =
+                        (itemView.context as AppCompatActivity).supportFragmentManager
                     val eqFragment = EarthquakeDetailFragment()
                     val bundle = Bundle()
                     bundle.putParcelable(EarthquakeDetailFragment.EXTRA_EQ, gempa)
