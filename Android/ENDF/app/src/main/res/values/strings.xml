@@ -27,7 +27,7 @@
     <string name="prediction_magnitude">Magnitude</string>
     <string name="prediction_magnitude_value">0.0</string>
 
-    <string name="api_key">AIzaSyCL-ulwPoZtXkkTy2wUyalTHTjh8gmxMWE</string>
+    <string name="api_key">API_KEY</string>
 
     <string name="prediction_disclaimer">Disclaimer</string>
     <string name="prediction_disclaimer_value">This result is merely a prediction, therefore it should not be taken as a guaranteed event.</string>
