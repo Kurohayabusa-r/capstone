@@ -12,17 +12,17 @@
         android:id="@+id/rv_gempa_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_gempa_magnitude"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_marginEnd="100dp"
             android:gravity="center"
             android:text="@string/gempa_skala"
             android:textColor="@color/primaryDarkColor"
-            android:textSize="40sp"
+            android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
