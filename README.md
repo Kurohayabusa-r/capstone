@@ -25,6 +25,16 @@ So, if you have cloned our repo, in order to build the app, you have to import t
 
 ## Machine Learning
 
+- Install Python3 on your device.
+- Run the following commands:
+```
+sudo apt install python3-pip
+```
+```
+pip3 install pandas numpy tensorflow matplotlib sklearn
+```
+- Run train.py to generate new model. It will be saved as a tensorflow saved_model format.
+
 ## Cloud
 - Create a GCP Project.
 - Enable the necessary APIs and SDKs.
