@@ -41,50 +41,36 @@ datasetTotal = datasetTotal.append(dataset2018)
 datasetTotal = datasetTotal.drop('KEDALAMAN', axis=1)
 
 X = datasetTotal.filter(regex='^(?!Mag).*$').to_numpy()
-#y = datasetTotal.filter(regex='Mag').to_numpy()
+y = datasetTotal.filter(regex='Mag').to_numpy()
 
-#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.001, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.001, random_state=0)
 sc = StandardScaler()
 X = sc.fit(X)
-#X_test = sc.fit_transform(X_test)
+X_test = sc.fit_transform(X_test)
 
-print(sc.transform([[-123, 123, 1, 1, 2041]]))
-
-# test = sc.fit_transform(np.array([[-1, 123, 4, 5, 2019], [-1, 123, 4, 5, 2021]]))
-
-
-#print(test)
-
-# def model():
-# 	model = Sequential()
-# 	model.add(Dense(512, input_dim=5, kernel_initializer='normal', activation='relu'))
-# 	model.add(Dropout(0.2))
-# 	model.add(Dense(256, kernel_initializer='normal', activation='relu'))
-# 	model.add(Dropout(0.2))
-# 	model.add(Dense(128, kernel_initializer='normal', activation='relu'))
-# 	model.add(Dropout(0.2))
-# 	model.add(Dense(1, kernel_initializer='normal'))
-# 	model.compile(loss='mean_squared_error', optimizer='adam')
-# 	return model
+def model():
+	model = Sequential()
+	model.add(Dense(512, input_dim=5, kernel_initializer='normal', activation='relu'))
+	model.add(Dropout(0.2))
+	model.add(Dense(256, kernel_initializer='normal', activation='relu'))
+	model.add(Dropout(0.2))
+	model.add(Dense(128, kernel_initializer='normal', activation='relu'))
+	model.add(Dropout(0.2))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam')
+	return model
 
 
-# model_real = model()
-# model_real.fit(X_train, y_train, batch_size=10, epochs=50)
+model_real = model()
+model_real.fit(X_train, y_train, batch_size=10, epochs=50)
 
-# y_pred = model_real.predict(X_test)
+y_pred = model_real.predict(X_test)
 
-# # model_json = model_real.to_json()
-# # with open("model.json", "w") as json_file:
-# #     json_file.write(model_json)
-# # # serialize weights to HDF5
-# # model_real.save_weights("model.h5")
-# # print("Saved model to disk")
-
-# model_real.save('.', save_format="tf")
+model_real.save('.', save_format="tf")
  
 
-# plt.plot(y_test, color = 'red', label = 'Real data')
-# plt.plot(y_pred, color = 'blue', label = 'Predicted data')
-# plt.title('Prediction')
-# plt.legend()
-# plt.show()
+plt.plot(y_test, color = 'red', label = 'Real data')
+plt.plot(y_pred, color = 'blue', label = 'Predicted data')
+plt.title('Prediction')
+plt.legend()
+plt.show()
