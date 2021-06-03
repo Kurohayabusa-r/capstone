@@ -13,6 +13,16 @@
     <string name="gempa_skala">%1$s</string>
     <string name="map_mode">Map Mode</string>
 
+    <string name="gempa_magnitude">M %1$s</string>
+    <string name="gempa_date">Date</string>
+    <string name="gempa_date_value">00-00-00</string>
+
+    <string name="gempa_lokasi">Location</string>
+    <string name="gempa_lokasi_value">Location</string>
+
+    <string name="gempa_depth">Depth</string>
+    <string name="gempa_depth_value">0.0</string>
+
     <!--News-->
     <string name="news_title">News Title</string>
     <string name="news_author">News Author</string>

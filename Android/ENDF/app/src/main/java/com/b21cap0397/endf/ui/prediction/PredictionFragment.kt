@@ -53,7 +53,8 @@ class PredictionFragment : Fragment(), OnMapReadyCallback {
         tvLocationValue = view.findViewById(R.id.tv_location_value)
         tvDateValue = view.findViewById(R.id.tv_date_value)
         swMap = view.findViewById(R.id.sw_map)
-        mapFragment = (childFragmentManager.findFragmentById(R.id.google_map) as? SupportMapFragment)!!
+        mapFragment =
+            (childFragmentManager.findFragmentById(R.id.google_map) as? SupportMapFragment)!!
         btnPredict = view.findViewById(R.id.bt_predict)
 
         val apiKey = BuildConfig.MAPS_API_KEY
@@ -153,7 +154,7 @@ class PredictionFragment : Fragment(), OnMapReadyCallback {
         val gc = geocode?.split(",")
         val lat = gc?.get(0)?.toDouble()
         val long = gc?.get(1)?.toDouble()
-        if (lat != null && long != null ) {
+        if (lat != null && long != null) {
             val coordinate = LatLng(lat, long)
             googleMap.addMarker(
                 MarkerOptions()

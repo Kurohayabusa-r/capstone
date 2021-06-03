@@ -20,6 +20,21 @@
         <item name="android:layout_marginBottom">5dp</item>
     </style>
 
+    <style name="Theme.ENDF.CardViewStyleEq" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardMaxElevation">3dp</item>
+        <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <style name="Theme.ENDF.TextViewEq" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
     <style name="Theme.ENDF.PredictionKeys" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/primaryDarkColor</item>
         <item name="android:textSize">16sp</item>

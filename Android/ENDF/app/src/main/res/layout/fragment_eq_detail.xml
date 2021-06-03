@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,88 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="250dp"
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_eq_dtl_date_value"
+            style="@style/Theme.ENDF.PredictionKeys"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/gempa_date_value"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_eq_dtl_location"
+            style="@style/Theme.ENDF.CardViewStyleEq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_eq_dtl_date_value">
+
+            <TextView
+                android:id="@+id/tv_eq_dtl_location_value"
+                style="@style/Theme.ENDF.TextViewEq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:padding="10dp"
+                android:text="@string/gempa_lokasi_value"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_eq_dtl_mgn"
+            style="@style/Theme.ENDF.CardViewStyleEq"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cv_eq_dtl_dpt_"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_eq_dtl_location"
+            app:layout_constraintVertical_bias="0.1">
+
+            <TextView
+                android:id="@+id/tv_eq_dtl_mgn_value"
+                style="@style/Theme.ENDF.TextViewEq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/gempa_magnitude" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_eq_dtl_dpt_"
+            style="@style/Theme.ENDF.CardViewStyleEq"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cv_eq_dtl_mgn"
+            app:layout_constraintTop_toBottomOf="@+id/cv_eq_dtl_location"
+            app:layout_constraintVertical_bias="0.1">
+
+            <TextView
+                android:id="@+id/tv_eq_dtl_dpt_value"
+                style="@style/Theme.ENDF.TextViewEq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/gempa_depth_value" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

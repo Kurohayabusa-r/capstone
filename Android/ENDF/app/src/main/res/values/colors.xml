@@ -4,10 +4,6 @@
     <color name="primaryLightColor">#c8e6c9</color>
     <color name="primaryDarkColor">#007300</color>
     <color name="primaryTextColor">#000000</color>
-<!--    <color name="primaryColor">#008890</color>-->
-<!--    <color name="primaryLightColor">#50b8c0</color>-->
-<!--    <color name="primaryDarkColor">#005a63</color>-->
-<!--    <color name="primaryTextColor">#000000</color>-->
     <color name="darker_gray">#212121</color>
     <color name="default_text_color">#808080</color>
     <color name="teal_1">#b2d8d8</color>
@@ -16,6 +12,3 @@
     <color name="orange_1">#f79862</color>
     <color name="orange_2">#c06936</color>
 </resources>
-
-<!--<color name="primaryLightColor">#7ad565</color>-->
-<!--<color name="primaryLightColor">#9fe6a0</color>-->
