@@ -7,11 +7,11 @@
     <string name="title_news2">BMKG News</string>
 
     <!--Earthquakes-->
-    <string name="gempa_wilayah">Lokasi</string>
-    <string name="gempa_kedalaman">Kedalaman</string>
-    <string name="gempa_potensi">Potensi</string>
+    <string name="gempa_wilayah">Location</string>
+    <string name="gempa_kedalaman">Depth</string>
     <string name="gempa_waktu">%1$s %2$s</string>
     <string name="gempa_skala">%1$s</string>
+    <string name="map_mode">Map Mode</string>
 
     <!--News-->
     <string name="news_title">News Title</string>

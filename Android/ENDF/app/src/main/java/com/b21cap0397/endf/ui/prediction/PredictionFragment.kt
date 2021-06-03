@@ -159,7 +159,7 @@ class PredictionFragment : Fragment(), OnMapReadyCallback {
                 MarkerOptions()
                     .position(coordinate)
                     .title("Test")
-                    .draggable(true)
+                    .draggable(false)
             )
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 8.0f))
         } else {
