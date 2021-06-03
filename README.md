@@ -32,18 +32,18 @@ So, if you have cloned our repo, in order to build the app, you have to import t
 - Create an API key that will be used by your Android app to authenticate.
 - Connect your Android app to Firebase, this is required in order to be able to use the Firebase SDK.
 - Create a Compute Engine instance, this will be used to deploy the flask app and run the scraping scripts.
-- Deploying the ML model to Cloud Run
-	1. Use the Dockerfile to build a custom image based on the TensorFlow Serving image
-		>This Dockerfile will copy the ML folder which contains the model into the container and run the necessary commands
-	2. Upload the image to the Container Registry.
-	3. Deploy the image from Container Registry to Cloud Run.
-- Running the flask app
-	1. Make changes in the flask app accordingly.
-	2. Copy the flask app into the compute engine instance.
-	3. Set up the compute engine instance to run flask.
-		>You may refer to this guide for AWS EC2: https://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
-- Running the scraping scripts
-	1. Make changes in the scraping scripts accordingly.
-	2. Copy the scripts into the compute engine instance.
-	3. Run the scripts to start scraping.
-		>Personally, I used pm2 to run the scripts
+#### Deploying the ML model to Cloud Run
+1. Use the Dockerfile to build a custom image based on the TensorFlow Serving image
+	>This Dockerfile will copy the ML folder which contains the model into the container and run the necessary commands
+2. Upload the image to the Container Registry.
+3. Deploy the image from Container Registry to Cloud Run.
+#### Running the flask app
+1. Make changes in the flask app accordingly.
+2. Copy the flask app into the compute engine instance.
+3. Set up the compute engine instance to run flask.
+	>You may refer to this guide for AWS EC2: https://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
+#### Running the scraping scripts
+1. Make changes in the scraping scripts accordingly.
+2. Copy the scripts into the compute engine instance.
+3. Run the scripts to start scraping.
+	>Personally, I used pm2 to run the scripts
