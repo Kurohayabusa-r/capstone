@@ -10,21 +10,32 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import com.b21cap0397.endf.BuildConfig
 import com.b21cap0397.endf.R
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import com.google.android.material.switchmaterial.SwitchMaterial
 import java.util.*
 
-class PredictionFragment : Fragment() {
+class PredictionFragment : Fragment(), OnMapReadyCallback {
 
     var geocode: String? = null
     var date: String? = null
 
     private lateinit var tvLocationValue: TextView
     private lateinit var tvDateValue: TextView
+    private lateinit var swMap: SwitchMaterial
+    private lateinit var btnPredict: Button
+    private lateinit var mapFragment: SupportMapFragment
 
     private val AUTOCOMPLETE_REQUEST_CODE = 1
 
@@ -41,19 +52,12 @@ class PredictionFragment : Fragment() {
 
         tvLocationValue = view.findViewById(R.id.tv_location_value)
         tvDateValue = view.findViewById(R.id.tv_date_value)
+        swMap = view.findViewById(R.id.sw_map)
+        mapFragment = (childFragmentManager.findFragmentById(R.id.google_map) as? SupportMapFragment)!!
+        btnPredict = view.findViewById(R.id.bt_predict)
 
         val apiKey = BuildConfig.MAPS_API_KEY
         context?.let { Places.initialize(it, apiKey) }
-
-        tvLocationValue.setOnClickListener {
-            val fields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
-            val intent = context?.let { appContext ->
-                Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
-                    .setCountry("ID")
-                    .build(appContext)
-            }
-            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
-        }
 
         tvDateValue.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -70,7 +74,30 @@ class PredictionFragment : Fragment() {
             datePickerDialog.show()
         }
 
-        val btnPredict: Button = view.findViewById(R.id.bt_predict)
+        tvLocationValue.setOnClickListener {
+            val fields = listOf(Place.Field.LAT_LNG, Place.Field.NAME)
+            val intent = context?.let { appContext ->
+                Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                    .setCountry("ID")
+                    .build(appContext)
+            }
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+
+        swMap.setOnCheckedChangeListener { _, isChecked ->
+            val gMap: FragmentContainerView = view.findViewById(R.id.google_map)
+            when (isChecked) {
+                true -> {
+                    mapFragment.getMapAsync(this)
+                    gMap.visibility = View.VISIBLE
+                }
+                else -> {
+                    gMap.visibility = View.GONE
+                }
+            }
+
+        }
+
         btnPredict.setOnClickListener {
             if (geocode == null || date == null) {
                 val toast = Toast.makeText(
@@ -99,9 +126,11 @@ class PredictionFragment : Fragment() {
                     val place = Autocomplete.getPlaceFromIntent(data)
                     tvLocationValue.text = place.name.toString()
                     geocode = formatGeocode(place.latLng.toString())
+                    mapFragment.getMapAsync(this)
                 } catch (e: Exception) {
                     tvLocationValue.text = getString(R.string.location_value)
                     geocode = null
+                    mapFragment.getMapAsync(this)
                 }
             }
 
@@ -117,6 +146,26 @@ class PredictionFragment : Fragment() {
             result = match.groupValues[1]
         }
         return result
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.clear()
+        val gc = geocode?.split(",")
+        val lat = gc?.get(0)?.toDouble()
+        val long = gc?.get(1)?.toDouble()
+        if (lat != null && long != null ) {
+            val coordinate = LatLng(lat, long)
+            googleMap.addMarker(
+                MarkerOptions()
+                    .position(coordinate)
+                    .title("Test")
+                    .draggable(true)
+            )
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 8.0f))
+        } else {
+            val defaultView = LatLng(-2.4833826, 117.8902853)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultView, 3.3f))
+        }
     }
 }
 

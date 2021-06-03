@@ -28,6 +28,7 @@
     <string name="prediction_result">Prediction Result</string>
     <string name="prediction_magnitude">Magnitude</string>
     <string name="prediction_magnitude_value">0.0</string>
+    <string name="switch_map">Google Map</string>
 
     <string name="api_key">API_KEY</string>
 
