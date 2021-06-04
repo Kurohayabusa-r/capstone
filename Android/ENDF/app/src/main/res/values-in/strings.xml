@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Epicentre</string>
+    <string name="title_earthquake">Gempa</string>
+    <string name="title_earthquake_2">Gempa di Indonesia</string>
+    <string name="title_prediction">Prediksi</string>
+    <string name="title_news">Berita</string>
+    <string name="title_news2">Berita BMKG</string>
+
+    <!--Earthquakes-->
+    <string name="gempa_wilayah">Lokasi</string>
+    <string name="gempa_kedalaman">Kedalaman</string>
+    <string name="gempa_waktu">%1$s %2$s</string>
+    <string name="gempa_skala">%1$s</string>
+    <string name="map_mode">Mode Peta</string>
+
+    <string name="gempa_magnitude">M %1$s</string>
+    <string name="gempa_date">Tanggal</string>
+    <string name="gempa_date_value">00-00-00</string>
+
+    <string name="gempa_lokasi">Lokasi</string>
+    <string name="gempa_lokasi_value">Lokasi</string>
+
+    <string name="gempa_depth">Kedalaman</string>
+    <string name="gempa_depth_value">0.0</string>
+
+    <!--News-->
+    <string name="news_title">Judul Berita</string>
+    <string name="news_author">Penulis Berita</string>
+    <string name="news_link">Tautan Berita</string>
+    <string name="news_published">Berita terbit pada</string>
+
+    <!--Prediction-->
+    <string name="location">Lokasi</string>
+    <string name="location_value">Pilih Lokasi</string>
+    <string name="date">Tanggal</string>
+    <string name="date_value">Pilih Tanggal</string>
+    <string name="predict">Prediksi</string>
+    <string name="prediction_result">Hasil Prediksi</string>
+    <string name="prediction_magnitude">Magnitude</string>
+    <string name="prediction_magnitude_value">0.0</string>
+    <string name="switch_map">Google Map</string>
+
+    <string name="api_key">API_KEY</string>
+
+    <string name="prediction_disclaimer">Disclaimer</string>
+    <string name="prediction_disclaimer_value">Hasil ini hanyalah prediksi, oleh karena itu tidak boleh dianggap sebagai peristiwa yang dijamin.</string>
+    <string name="empty_predict_message">Lokasi atau Tanggal tidak boleh kosong!</string>
+    <string name="connection_error">Koneksi gagal!</string>
+    <string name="try_again">Coba Lagi</string>
+
+    //menu
+    <string name="change_language_settings">Pengaturan Bahasa</string>
+    <string name="change_settings">Pengaturan</string>
+</resources>

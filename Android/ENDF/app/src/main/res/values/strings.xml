@@ -47,4 +47,8 @@
     <string name="empty_predict_message">Location or date must NOT be empty!</string>
     <string name="connection_error">Connection error!</string>
     <string name="try_again">Try again</string>
+
+    //menu
+    <string name="change_language_settings">Language Settings</string>
+    <string name="change_settings">Settings</string>
 </resources>
