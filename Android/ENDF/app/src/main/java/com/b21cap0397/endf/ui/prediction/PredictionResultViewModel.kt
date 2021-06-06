@@ -18,7 +18,7 @@ class PredictionResultViewModel : ViewModel() {
 
     fun setPredictionResult(data: List<Number>) {
 
-        val url = "http://35.226.247.153/predict"
+        val url = "http://34.101.64.239/predict"
 
         val jsonParams = JSONObject()
         jsonParams.put("instances", JSONArray(data))
