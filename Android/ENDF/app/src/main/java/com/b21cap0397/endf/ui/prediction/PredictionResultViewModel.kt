@@ -16,7 +16,7 @@ class PredictionResultViewModel : ViewModel() {
     private val _magnitudePrediction = MutableLiveData<String>()
     private val _isTimeout = MutableLiveData<Boolean>()
 
-    fun setPredictionResult(data: List<Number>) {
+    fun setPredictionResult(data: List<List<Number>>) {
 
         val url = "http://34.101.64.239/predict"
 

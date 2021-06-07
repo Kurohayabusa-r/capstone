@@ -60,7 +60,7 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
                     fullDateSplitted[0]
                 )
 
-            viewModel.setPredictionResult(params)
+            viewModel.setPredictionResult(listOf(params))
         }
 
         viewModel.magnitudePrediction.observe(viewLifecycleOwner, {
@@ -82,7 +82,7 @@ class PredictionResultFragment : BottomSheetDialogFragment() {
         })
 
         btnTryAgain.setOnClickListener {
-            viewModel.setPredictionResult(params)
+            viewModel.setPredictionResult(listOf(params))
             progressBar.visibility = View.VISIBLE
             timeoutMessage.visibility = View.INVISIBLE
             btnTryAgain.visibility = View.INVISIBLE
