@@ -15,10 +15,8 @@ def root():
 def predict():
     try:
         data = request.json.get('instances')
-        data = np.array(data)
-        data = np.reshape(data, (1,-1))
 
-        datasetTotal = pd.read_csv('/home/glennyohanes17/flaskapp/csv/datasetTotal.csv')
+        datasetTotal = pd.read_csv('/home/glennyohanes17/capstone/ML/csv/datasetTotal.csv')
 
         X = datasetTotal.to_numpy()
         sc = StandardScaler()
@@ -27,7 +25,7 @@ def predict():
         input_data = {'instances': formatted.tolist()}
         url = "https://predict-feizm4s2ta-et.a.run.app/v1/models/model/versions/1:predict"
         x = requests.post(url, json=input_data)
-        return x.text
+        return x.json()
     except Exception as e:
         return "Error: {}".format(e)
 
