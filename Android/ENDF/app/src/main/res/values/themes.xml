@@ -30,7 +30,7 @@
     <style name="Theme.ENDF.TextViewEq" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:textColor">@color/primaryColor</item>
         <item name="android:gravity">center</item>
 
     </style>

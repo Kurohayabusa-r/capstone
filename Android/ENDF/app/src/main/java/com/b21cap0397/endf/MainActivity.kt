@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_language_settings) {
             val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)

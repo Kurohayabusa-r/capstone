@@ -47,9 +47,7 @@ class EarthquakeFiveViewModel : ViewModel() {
 
                     gempaObjects.add(gempaLimaSr)
                 }
-
                 gempaList.postValue(gempaObjects)
-//                gempaList.value = gempaObjects
             }
 
             override fun onFailure(
@@ -91,6 +89,7 @@ class EarthquakeFiveViewModel : ViewModel() {
                 Log.d("FB ERR", "Error getting documents: ", exception)
             }
     }
+
 
     fun getEarthquakeList(): LiveData<ArrayList<EarthquakeFiveEntity>> = gempaList
 }

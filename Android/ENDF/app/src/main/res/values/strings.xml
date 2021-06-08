@@ -13,7 +13,7 @@
     <string name="gempa_skala">%1$s</string>
     <string name="map_mode">Map Mode</string>
 
-    <string name="gempa_magnitude">M %1$s</string>
+    <string name="gempa_magnitude">%1$s</string>
     <string name="gempa_date">Date</string>
     <string name="gempa_date_value">00-00-00</string>
 
