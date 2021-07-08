@@ -12,6 +12,11 @@
         android:title="@string/title_prediction" />
 
     <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/ic_date"
+        android:title="History" />
+
+    <item
         android:id="@+id/nav_news"
         android:icon="@drawable/ic_nav_news"
         android:title="@string/title_news" />
